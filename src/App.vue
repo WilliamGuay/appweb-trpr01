@@ -2,13 +2,25 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
-import AddProductForm from "./components/AddProductForm.vue";
 import BoardgameList from "./components/BoardgameList.vue";
+import NavBar from "./components/Header.vue";
 </script>
 
 <template>
-    <BoardgameList />
-    <AddProductForm />
+    <div id="page">
+        <NavBar />
+        <BoardgameList />
+    </div>
 </template>
 
-<style scoped></style>
+<style>
+body {
+    background: #B6D369;
+}
+
+#page {
+    background-color: #D0E562;
+    width: 100%;
+    margin: 10px;
+}
+</style>
