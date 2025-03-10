@@ -13,6 +13,7 @@ Ce site web est un site "squelette" d'un site de vente en ligne du coté adminis
 - Il est possible de dupliquer un produit afin d'en rajouter un plus rapidement
 - Il est possible d'exporter la liste des produits dans un fichier csv
 - Il est possible de rechercher des produits dans la liste des produits
+- Un avertissement est affiché lorsque la quantité en inventaire d'un item est à 0
 
 ## Utilisation de l'ia
 
