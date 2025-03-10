@@ -45,7 +45,10 @@ function updateQuantityStatus() {
             </button>
             <button @click="onEdit(boardgame.id)" type="button" class="btn btn-outline-warning">Modifier</button>
             <button @click="onDuplicate(boardgame.id)" type="button" class="btn btn-outline-primary">Dupliquer</button>
-            <button @click="onDelete(boardgame.id)" type="button" class="btn btn-outline-danger">Retirer</button>
+            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                v-bind:data-bs-target="'#gameDelete' + boardgame.id">
+                Supprimer
+            </button>
         </td>
     </tr>
 
@@ -54,7 +57,7 @@ function updateQuantityStatus() {
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="gameDetailsLabel">Modal title</h5>
+                    <h5 class="modal-title" id="gameDetailsLabel">Détails</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -67,7 +70,28 @@ function updateQuantityStatus() {
                     <p>Temps de jeu: {{ boardgame.playingTime }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" v-bind:id="'gameDelete' + boardgame.id" tabindex="-1" aria-labelledby="gameDeleteLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gameDeleteLabel">Attention</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h1>Attention</h1>
+                    <p>Souhaitez vous réellement supprimer le jeu {{ boardgame.name }}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button @click="onDelete(boardgame.id)" type="button" class="btn btn-danger"
+                        data-bs-dismiss="modal">Supprimer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>

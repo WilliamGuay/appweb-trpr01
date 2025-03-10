@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "bootstrap"
 
 import BoardgameList from "./components/BoardgameList.vue";

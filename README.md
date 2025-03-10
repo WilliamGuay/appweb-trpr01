@@ -18,7 +18,8 @@ Ce site web est un site "squelette" d'un site de vente en ligne du coté adminis
 
 - Le logo du site a été généré à l'aide de l'ia (Copilot)
 - Code pour la méthode pour filtrer la liste des jeux selon l'entrée de la barre de recherche (BoardgameList.vue ligne 180) générée par l'ia (AppWebGPT)
-- implémentation de la classe is-valid dans les champs à vérifier (AddBoardgameForm.vue et ModifyBoardgameForm.vue)
+- implémentation de la classe is-valid dans les champs à vérifier (AddBoardgameForm.vue et ModifyBoardgameForm.vue) (AppWebGPT)
+- le code pour afficher le modal lorsque la quantité en stock est modifié à 0 (ModifyBoardGame.vue ligne 39 à 48 et 89 à 91) (AppWebGPT)
 
 #### lien vers le github repo
 

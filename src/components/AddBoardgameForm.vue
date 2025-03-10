@@ -68,6 +68,21 @@ watch(() => props.playingTimeMax, (val) => {
 })
 
 function addBoardGame() {
+    let addNbPlayer: string = ""
+    let addPlayingTime: string = ""
+
+    if (addNbPlayerMax.value) {
+        addNbPlayer = addNbPlayerMin.value + "-" + addNbPlayerMax.value
+    } else {
+        addNbPlayer = addNbPlayerMin.value
+    }
+
+    if (addPlayingTimeMax.value) {
+        addPlayingTime = addPlayingTimeMin.value + "-" + addPlayingTimeMax.value
+    } else {
+        addPlayingTime = addPlayingTimeMin.value
+    }
+
     if (validate()) {
         let newBoardgame: Boardgame = {
             id: Date.now(),
@@ -76,8 +91,8 @@ function addBoardGame() {
             description: addDescription.value,
             qtyStock: +addQtyStock.value,
             bggScore: +addBggScore.value,
-            nbPlayer: addNbPlayerMin.value + "-" + addNbPlayerMax.value,
-            playingTime: addPlayingTimeMin.value + "-" + addPlayingTimeMax.value
+            nbPlayer: addNbPlayer,
+            playingTime: addPlayingTime
         }
 
         props.addGame(newBoardgame)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue"
+import { ref, watch, onMounted } from "vue"
 import type { Boardgame } from "../scripts/types";
 
 const props = defineProps<{
@@ -34,6 +34,18 @@ const editNbPlayerMax = ref<string>(props.nbPlayerMax)
 const editPlayingTimeMin = ref<string>(props.playingTimeMin)
 const editPlayingTimeMax = ref<string>(props.playingTimeMax)
 const editDescription = ref<string>(props.description == null ? "" : props.description)
+
+//code généré par l'ia
+let modalInstance: any = null
+
+onMounted(() => {
+    import("bootstrap/dist/js/bootstrap.bundle.min.js").then((bootstrap) => {
+        const modalElement = document.getElementById("gameModifyModal")
+        if (modalElement) {
+            modalInstance = new bootstrap.Modal(modalElement)
+        }
+    })
+})
 
 watch(() => props.name, (val) => {
     editName.value = val
@@ -73,14 +85,34 @@ watch(() => props.description, (val) => {
 
 function editBoardGame() {
     if (validate()) {
+        //code généré par l'ia
+        if (editQtyStock.value === "0" && modalInstance) {
+            modalInstance.show()
+        }
+
+        let editNbPlayer: string = ""
+        let editPlayingTime: string = ""
+
+        if (editNbPlayerMax.value) {
+            editNbPlayer = editNbPlayerMin.value + "-" + editNbPlayerMax.value
+        } else {
+            editNbPlayer = editNbPlayerMin.value
+        }
+
+        if (editPlayingTimeMax.value) {
+            editPlayingTime = editPlayingTimeMin.value + "-" + editPlayingTimeMax.value
+        } else {
+            editPlayingTime = editPlayingTimeMin.value
+        }
+
         let newBoardGame: Boardgame = {
             id: Date.now(),
             name: editName.value,
             price: +editPrice.value,
             qtyStock: +editQtyStock.value,
             bggScore: +editBggScore.value,
-            nbPlayer: editNbPlayerMin + "-" + editNbPlayerMax,
-            playingTime: editPlayingTimeMin + "-" + editPlayingTimeMax,
+            nbPlayer: editNbPlayer,
+            playingTime: editPlayingTime,
             description: editDescription.value
         }
 
@@ -267,4 +299,21 @@ const validate = () => {
                 le jeu</button>
         </div>
     </form>
+
+    <div class="modal fade" id="gameModifyModal" tabindex="-1" aria-labelledby="gameModifyLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="gameModifyLabel">Attention</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Le jeu {{ editName }} est à cours de stock</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
