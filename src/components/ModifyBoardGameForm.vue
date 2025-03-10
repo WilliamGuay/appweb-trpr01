@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, onMounted } from "vue"
 import type { Boardgame } from "../scripts/types";
+import * as bootstrap from "bootstrap"
+
 
 const props = defineProps<{
     name: string
@@ -39,12 +41,10 @@ const editDescription = ref<string>(props.description == null ? "" : props.descr
 let modalInstance: any = null
 
 onMounted(() => {
-    import("bootstrap/dist/js/bootstrap.bundle.min.js").then((bootstrap) => {
-        const modalElement = document.getElementById("gameModifyModal")
-        if (modalElement) {
-            modalInstance = new bootstrap.Modal(modalElement)
-        }
-    })
+    const modalElement = document.getElementById("gameModifyModal")
+    if (modalElement) {
+        modalInstance = new bootstrap.Modal(modalElement)
+    }
 })
 
 watch(() => props.name, (val) => {
